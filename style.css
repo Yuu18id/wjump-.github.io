@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    height: 100vh;
+    width: 100vw;
+}
+  
+@keyframes backgroundMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.background {
+    height: 100vh; /* Set the height to the full viewport height */
+  width: 100%;
+  background-image: url("assets/img/background.png");
+  background-size: cover;
+}
+  
+.bird {
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 100;
+}
+  
+.pipe_sprite {
+    position: fixed;
+    top: 40vh;
+    left: 100vw;
+    height: 85vh;
+    width: 17vw;
+    /* background-image: url("assets/pipe.png");
+    background-size: cover; */
+    background-color: green;
+}
+  
+.message {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 5rem; /* Sesuaikan ukuran font sesuai kebutuhan */
+    font-weight: 100;
+    color: black;
+    top: 50%; /* Menempatkan elemen di tengah vertikal */
+    left: 50%; /* Menempatkan elemen di tengah horizontal */
+    transform: translate(-50%, -50%); /* Menggeser elemen ke tengah */
+    text-align: center;
+}
+  
+.score {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 5vh;
+    font-weight: 10;
+    top: 0;
+    margin-left: 2%;
+}
+
+.high_score {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 4rem; /* Sesuaikan ukuran font sesuai kebutuhan */
+    font-weight: 100;
+    color: black;
+    top: 62%; /* Menempatkan elemen di tengah vertikal */
+    left: 50%; /* Menempatkan elemen di tengah horizontal */
+    transform: translate(-50%, -50%); /* Menggeser elemen ke tengah */
+    text-align: center;
+}
+  
+.score_val {
+    color: rgb(75, 75, 75);
+}
+
+.high_score_val {
+    color: rgb(75, 75, 75);
+}
