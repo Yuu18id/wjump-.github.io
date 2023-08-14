@@ -62,6 +62,23 @@ document.addEventListener('keydown', (e) => {
     play();
   }
 });
+
+document.addEventListener('click', () => {
+
+  // Start the game if click key is pressed
+    document.querySelectorAll('.pipe_sprite')
+      .forEach((e) => {
+        e.remove();
+      });
+    bird.style.top = '40vh';
+    game_state = 'Play';
+    message.innerHTML = '';
+    score_val.innerHTML = '0';
+    high_score_val.innerHTML = '';
+    backgroundImage.style.animation = "none"
+    backgroundImage.style.animation = "backgroundMove 40s linear infinite"
+    play();
+});
 function play() {
   function move() {
 
