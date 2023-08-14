@@ -63,7 +63,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-document.addEventListener('click', () => {
+document.addEventListener('touchend', () => {
 
   // Start the game if click key is pressed
     document.querySelectorAll('.pipe_sprite')
@@ -149,7 +149,7 @@ function play() {
       }
     });
     //mobile
-    document.addEventListener('click', () => {
+    document.addEventListener('touchend', () => {
         bird_dy = -9.5;
     });
 
@@ -218,7 +218,7 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-document.addEventListener('click', () => {
+document.addEventListener('touchend', () => {
   if (game_state === 'Play') {
       playJumpAudio();
   }
