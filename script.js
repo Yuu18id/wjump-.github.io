@@ -1,11 +1,15 @@
 // Background scrolling speed
 let move_speed = 3;
+let bird_dy = 0;
 
 // Gravity constant value
 let gravity = 0.5;
 
 // Getting reference to the bird element
 let bird = document.querySelector('.bird');
+
+//button
+let button = document.querySelector('.button')
 
 // background dom
 let backgroundImage = document.querySelector('.background')
@@ -54,6 +58,7 @@ document.addEventListener('keydown', (e) => {
       });
     bird.style.top = '40vh';
     game_state = 'Play';
+    button.innerHTML = '';
     message.innerHTML = '';
     score_val.innerHTML = '0';
     high_score_val.innerHTML = '';
@@ -63,22 +68,26 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-document.addEventListener('touchstart', () => {
+if (game_state != 'Play') {
+  button.addEventListener('click', () => {
 
-  // Start the game if click key is pressed
-    document.querySelectorAll('.pipe_sprite')
-      .forEach((e) => {
-        e.remove();
-      });
-    bird.style.top = '40vh';
-    game_state = 'Play';
-    message.innerHTML = '';
-    score_val.innerHTML = '0';
-    high_score_val.innerHTML = '';
-    backgroundImage.style.animation = "none"
-    backgroundImage.style.animation = "backgroundMove 40s linear infinite"
-    play();
-});
+    // Start the game if click key is pressed
+      document.querySelectorAll('.pipe_sprite')
+        .forEach((e) => {
+          e.remove();
+        });
+      bird.style.top = '40vh';
+      game_state = 'Play';
+      button.innerHTML = '';
+      message.innerHTML = '';
+      score_val.innerHTML = '0';
+      high_score_val.innerHTML = '';
+      backgroundImage.style.animation = "none"
+      backgroundImage.style.animation = "backgroundMove 40s linear infinite"
+      play();
+  });
+}
+
 function play() {
   function move() {
 
@@ -114,6 +123,7 @@ function play() {
           game_state = 'End';
           message.innerHTML = 'Press Enter To Restart';
           high_score_val.innerHTML = 'High Score : '
+          button.innerHTML = 'Restart';
           message.style.left = '50%';
           backgroundImage.style.animationPlayState = "paused"
           hitSound.play();
@@ -139,7 +149,7 @@ function play() {
   }
   requestAnimationFrame(move);
 
-  let bird_dy = 0;
+  
   function apply_gravity() {
     if (game_state != 'Play') return;
     bird_dy = bird_dy + gravity;
@@ -150,7 +160,9 @@ function play() {
     });
     //mobile
     document.addEventListener('touchstart', () => {
+      if (game_state === 'Play') {
         bird_dy = -9.5;
+      }
     });
 
     // Collision detection with bird and
@@ -218,8 +230,15 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-document.addEventListener('touchstart', () => {
+document.addEventListener('click', () => {
   if (game_state === 'Play') {
       playJumpAudio();
   }
 });
+
+setInterval(() => {
+  button.style.visibility = "hidden";
+  setTimeout(() => {
+      button.style.visibility = "visible";
+  }, 500); // Ganti nilai 100 dengan interval waktu yang Anda inginkan (dalam milisekon)
+}, 1000);

@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    touch-action: manipulation;
+    font-family: 'Silkscreen';
 }
   
 body {
@@ -50,9 +52,8 @@ body {
     z-index: 10;
     height: 10vh;
     font-size: 5rem; /* Sesuaikan ukuran font sesuai kebutuhan */
-    font-weight: 100;
     color: black;
-    top: 50%; /* Menempatkan elemen di tengah vertikal */
+    top: 10%; /* Menempatkan elemen di tengah vertikal */
     left: 50%; /* Menempatkan elemen di tengah horizontal */
     transform: translate(-50%, -50%); /* Menggeser elemen ke tengah */
     text-align: center;
@@ -87,4 +88,15 @@ body {
 
 .high_score_val {
     color: rgb(75, 75, 75);
+}
+
+
+.button {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
 }
