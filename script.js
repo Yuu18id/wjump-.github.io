@@ -1,91 +1,88 @@
-// Background scrolling speed
+// Variables
 let move_speed = 3;
 let bird_dy = 0;
-
-// Gravity constant value
 let gravity = 0.5;
+let game_state = 'Start';
 
-// Getting reference to the bird element
-let bird = document.querySelector('.bird');
-
-//button
-let button = document.querySelector('.button')
-
-// background dom
-let backgroundImage = document.querySelector('.background')
+const bird = document.querySelector('.bird');
+const button = document.querySelector('.button');
+const backgroundImage = document.querySelector('.background');
 const computedStyle = window.getComputedStyle(backgroundImage);
 const backgroundImagePos = computedStyle.getPropertyValue("background-position");
 
-// jump
-const jumpSound = new Audio();
-jumpSound.src = "assets/bgm/jump.mp3";
+const jumpSound = new Audio("assets/bgm/jump.mp3");
+const hitSound = new Audio("assets/bgm/hit.wav");
 
-function playJumpAudio() {
-  const jump = new Audio("assets/bgm/jump.mp3");
-  jump.play()
+let bird_props = bird.getBoundingClientRect();
+let background = document.querySelector('.background').getBoundingClientRect();
+
+const score_val = document.querySelector('.score_val');
+const message = document.querySelector('.message');
+const high_score_val = document.querySelector('.high_score_val');
+
+let score = 0;
+
+// Event Listeners
+document.addEventListener('keydown', handleKeyPress);
+button.addEventListener('click', handleButtonClick);
+document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('keyup', handleKeyUp);
+document.addEventListener('click', handleMouseClick);
+
+// Functions
+function handleKeyPress(e) {
+  if (e.key == 'Enter' && game_state != 'Play') {
+    startGame();
+  }
 }
 
-const hitSound = new Audio();
-hitSound.src = "assets/bgm/hit.wav"
-
-// Getting bird element properties
-let bird_props = bird.getBoundingClientRect();
-let background =
-  document.querySelector('.background')
-    .getBoundingClientRect();
-
-// Getting reference to the score element
-var scores = [];
-let score = 0;
-let score_val =
-  document.querySelector('.score_val');
-let message =
-  document.querySelector('.message');
-let high_score_val = document.querySelector('.high_score_val');
-
-// Setting initial game state to start
-var game_state = 'Start';
-
-// Add an eventlistener for key presses
-document.addEventListener('keydown', (e) => {
-
-  // Start the game if enter key is pressed
-  if (e.key == 'Enter' &&
-    game_state != 'Play') {
-    document.querySelectorAll('.pipe_sprite')
-      .forEach((e) => {
-        e.remove();
-      });
-    bird.style.top = '40vh';
-    game_state = 'Play';
-    button.innerHTML = '';
-    message.innerHTML = '';
-    score_val.innerHTML = '0';
-    high_score_val.innerHTML = '';
-    backgroundImage.style.animation = "none"
-    backgroundImage.style.animation = "backgroundMove 40s linear infinite"
-    play();
+function handleButtonClick() {
+  if (game_state != 'Play') {
+    startGame();
   }
-});
+}
 
-if (game_state != 'Play') {
-  button.addEventListener('click', () => {
+function handleTouchStart() {
+  if (game_state === 'Play') {
+    bird_dy = -9.5;
+  }
+}
 
-    // Start the game if click key is pressed
-      document.querySelectorAll('.pipe_sprite')
-        .forEach((e) => {
-          e.remove();
-        });
-      bird.style.top = '40vh';
-      game_state = 'Play';
-      button.innerHTML = '';
-      message.innerHTML = '';
-      score_val.innerHTML = '0';
-      high_score_val.innerHTML = '';
-      backgroundImage.style.animation = "none"
-      backgroundImage.style.animation = "backgroundMove 40s linear infinite"
-      play();
+function handleKeyUp(e) {
+  if (game_state === 'Play') {
+    if (e.key == 'ArrowUp' || e.key == ' ') {
+      playJumpAudio();
+    }
+  }
+}
+
+function handleMouseClick() {
+  if (game_state === 'Play') {
+    playJumpAudio();
+  }
+}
+
+function startGame() {
+  clearPipes();
+  bird.style.top = '40vh';
+  game_state = 'Play';
+  button.innerHTML = '';
+  message.innerHTML = '';
+  score_val.innerHTML = '0';
+  high_score_val.innerHTML = '';
+  backgroundImage.style.animation = "none";
+  backgroundImage.style.animation = "backgroundMove 40s linear infinite";
+  play();
+}
+
+function clearPipes() {
+  document.querySelectorAll('.pipe_sprite').forEach((e) => {
+    e.remove();
   });
+}
+
+function playJumpAudio() {
+  jumpSound.play();
 }
 
 function play() {
@@ -149,7 +146,7 @@ function play() {
   }
   requestAnimationFrame(move);
 
-  
+
   function apply_gravity() {
     if (game_state != 'Play') return;
     bird_dy = bird_dy + gravity;
@@ -221,24 +218,10 @@ function play() {
   requestAnimationFrame(create_pipe);
 }
 
-//jump sound
-document.addEventListener('keyup', (e) => {
-  if (game_state === 'Play') {
-    if (e.key == 'ArrowUp' || e.key == ' ') {
-      playJumpAudio();
-    }
-  }
-});
-
-document.addEventListener('click', () => {
-  if (game_state === 'Play') {
-      playJumpAudio();
-  }
-});
-
 setInterval(() => {
-  button.style.visibility = "hidden";
-  setTimeout(() => {
-      button.style.visibility = "visible";
-  }, 500); // Ganti nilai 100 dengan interval waktu yang Anda inginkan (dalam milisekon)
+  toggleVisibility(button);
 }, 1000);
+
+function toggleVisibility(element) {
+  element.style.visibility = (element.style.visibility === "hidden") ? "visible" : "hidden";
+}
