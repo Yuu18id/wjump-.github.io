@@ -4,30 +4,24 @@ let bird_dy = 0;
 let gravity = 0.5;
 let game_state = 'Start';
 
+// DOM
 const bird = document.querySelector('.bird');
 const button = document.querySelector('.button');
 const backgroundImage = document.querySelector('.background');
 const computedStyle = window.getComputedStyle(backgroundImage);
 const backgroundImagePos = computedStyle.getPropertyValue("background-position");
-
-const jumpSound = new Audio("assets/bgm/jump.mp3");
-const hitSound = new Audio("assets/bgm/hit.wav");
-
-let bird_props = bird.getBoundingClientRect();
-let background = document.querySelector('.background').getBoundingClientRect();
-
 const score_val = document.querySelector('.score_val');
 const message = document.querySelector('.message');
 const high_score_val = document.querySelector('.high_score_val');
 
-let score = 0;
+// SFX
+const hitSound = new Audio("assets/bgm/hit.wav");
 
-// Event Listeners
-document.addEventListener('keydown', handleKeyPress);
-button.addEventListener('click', handleButtonClick);
-document.addEventListener('touchstart', handleTouchStart);
-document.addEventListener('keyup', handleKeyUp);
-document.addEventListener('click', handleMouseClick);
+// Object
+let bird_props = bird.getBoundingClientRect();
+let background = document.querySelector('.background').getBoundingClientRect();
+
+let score = 0;
 
 // Functions
 function handleKeyPress(e) {
@@ -62,6 +56,13 @@ function handleMouseClick() {
   }
 }
 
+// Event Listeners
+document.addEventListener('keydown', handleKeyPress);
+button.addEventListener('click', handleButtonClick);
+document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('keyup', handleKeyUp);
+document.addEventListener('click', handleMouseClick);
+
 function startGame() {
   clearPipes();
   bird.style.top = '40vh';
@@ -82,6 +83,7 @@ function clearPipes() {
 }
 
 function playJumpAudio() {
+  const jumpSound = new Audio("assets/bgm/jump.mp3");
   jumpSound.play();
 }
 
