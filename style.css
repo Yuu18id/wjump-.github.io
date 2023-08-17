@@ -63,7 +63,7 @@ body {
     position: fixed;
     z-index: 10;
     height: 10vh;
-    font-size: 5vh;
+    font-size: 6rem;
     font-weight: 10;
     top: 0;
     margin-left: 2%;
@@ -82,13 +82,7 @@ body {
     text-align: center;
 }
   
-.score_val {
-    color: rgb(75, 75, 75);
-}
 
-.high_score_val {
-    color: rgb(75, 75, 75);
-}
 
 
 .button {

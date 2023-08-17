@@ -3,6 +3,7 @@ let move_speed = 3;
 let bird_dy = 0;
 let gravity = 0.5;
 let game_state = 'Start';
+let hiscore = [];
 
 // DOM
 const bird = document.querySelector('.bird');
@@ -121,10 +122,11 @@ function play() {
           // if collision occurs
           game_state = 'End';
           message.innerHTML = 'Press Enter To Restart';
-          high_score_val.innerHTML = 'High Score : '
+          hiscore.push(parseInt(score_val.innerHTML));
+          high_score_val.innerHTML = `High Score : ${Math.max(...hiscore)}` 
           button.innerHTML = 'Restart';
           message.style.left = '50%';
-          backgroundImage.style.animationPlayState = "paused"
+          backgroundImage.style.animationPlayState = "paused";
           hitSound.play();
           return;
         } else {
@@ -137,7 +139,6 @@ function play() {
             element.increase_score == '1'
           ) {
             score_val.innerHTML = +score_val.innerHTML + 1;
-
           }
           element.style.left =
             pipe_sprite_props.left - move_speed + 'px';
@@ -154,13 +155,13 @@ function play() {
     bird_dy = bird_dy + gravity;
     document.addEventListener('keydown', (e) => {
       if (e.key == 'ArrowUp' || e.key == ' ') {
-        bird_dy = -9.5;
+        bird_dy = -10.5;
       }
     });
     //mobile
     document.addEventListener('touchstart', () => {
       if (game_state === 'Play') {
-        bird_dy = -9.5;
+        bird_dy = -10.5;
       }
     });
 
