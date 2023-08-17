@@ -123,7 +123,7 @@ function play() {
           game_state = 'End';
           message.innerHTML = 'Press Enter To Restart';
           hiscore.push(parseInt(score_val.innerHTML));
-          high_score_val.innerHTML = `High Score : ${Math.max(...hiscore)}` 
+          high_score_val.innerHTML = `High Score : ${Math.max(hiscore)}` 
           button.innerHTML = 'Restart';
           message.style.left = '50%';
           backgroundImage.style.animationPlayState = "paused";
