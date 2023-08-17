@@ -28,6 +28,7 @@ body {
 }
   
 .bird {
+    object-fit: fill;
     height: 100px;
     width: 100px;
     position: fixed;
@@ -81,9 +82,6 @@ body {
     transform: translate(-50%, -50%); /* Menggeser elemen ke tengah */
     text-align: center;
 }
-  
-
-
 
 .button {
     position: fixed;

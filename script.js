@@ -22,8 +22,6 @@ const hitSound = new Audio("assets/bgm/hit.wav");
 let bird_props = bird.getBoundingClientRect();
 let background = document.querySelector('.background').getBoundingClientRect();
 
-let score = 0;
-
 // Functions
 function handleKeyPress(e) {
   if (e.key == 'Enter' && game_state != 'Play') {
@@ -123,15 +121,16 @@ function play() {
           game_state = 'End';
           message.innerHTML = 'Press Enter To Restart';
           hiscore.push(parseInt(score_val.innerHTML));
-          high_score_val.innerHTML = `High Score : ${Math.max(hiscore)}` 
+          high_score_val.innerHTML = `Hi-Score  ${Math.max.apply(Math, hiscore)}` 
           button.innerHTML = 'Restart';
           message.style.left = '50%';
           backgroundImage.style.animationPlayState = "paused";
           hitSound.play();
           return;
-        } else {
+        }
+        else {
           // Increase the score if player
-          // has the successfully dodged the 
+          // has the successfully dodged the pipe
           if (
             pipe_sprite_props.right < bird_props.left &&
             pipe_sprite_props.right +
@@ -156,6 +155,9 @@ function play() {
     document.addEventListener('keydown', (e) => {
       if (e.key == 'ArrowUp' || e.key == ' ') {
         bird_dy = -10.5;
+        /* console.log(game_state)
+        console.log(bird_props.bottom)
+          console.log(background.bottom) */
       }
     });
     //mobile
@@ -168,7 +170,7 @@ function play() {
     // Collision detection with bird and
     // window bottom
 
-    if (bird_props.bottom >= background.bottom) {
+    if (bird_props.bottom >= background.bottom){
       game_state = 'End';
       message.innerHTML = 'Please Restart the Page (Bug)';
       high_score_val.innerHTML = 'High Score : '
