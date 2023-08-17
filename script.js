@@ -205,6 +205,7 @@ function play() {
       pipe_sprite_inv.className = 'pipe_sprite';
       pipe_sprite_inv.style.top = pipe_posi - 70 + 'vh';
       pipe_sprite_inv.style.left = '100vw';
+      pipe_sprite_inv.style.transform = 'scaleY(-1)';
 
       // Append the created pipe element in DOM
       document.body.appendChild(pipe_sprite_inv);
@@ -230,3 +231,4 @@ setInterval(() => {
 function toggleVisibility(element) {
   element.style.visibility = (element.style.visibility === "hidden") ? "visible" : "hidden";
 }
+

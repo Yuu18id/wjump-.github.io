@@ -43,9 +43,11 @@ body {
     left: 100vw;
     height: 85vh;
     width: 17vw;
-    /* background-image: url("assets/pipe.png");
-    background-size: cover; */
-    background-color: green;
+    background-image: url("assets/img/pipe1.png");
+    background-size: 97vw 176vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
   
 .message {
