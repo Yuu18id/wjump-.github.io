@@ -188,7 +188,7 @@ function play() {
   let pipe_seperation = -10;
 
   // Constant value for the gap between two pipes
-  let pipe_gap = 27;
+  let pipe_gap = 45;
 
   function create_pipe() {
     if (game_state != 'Play') return;
@@ -203,7 +203,7 @@ function play() {
       let pipe_posi = Math.floor(Math.random() * 25) + 8;
       let pipe_sprite_inv = document.createElement('div');
       pipe_sprite_inv.className = 'pipe_sprite';
-      pipe_sprite_inv.style.top = pipe_posi - 70 + '%';
+      pipe_sprite_inv.style.top = pipe_posi - 70 + 'vh';
       pipe_sprite_inv.style.left = '100vw';
       pipe_sprite_inv.style.transform = 'scaleY(-1)';
 
@@ -211,7 +211,7 @@ function play() {
       document.body.appendChild(pipe_sprite_inv);
       let pipe_sprite = document.createElement('div');
       pipe_sprite.className = 'pipe_sprite';
-      pipe_sprite.style.top = pipe_posi + pipe_gap + '%';
+      pipe_sprite.style.top = pipe_posi + pipe_gap + 'vh';
       pipe_sprite.style.left = '100vw';
       pipe_sprite.increase_score = '1';
 
