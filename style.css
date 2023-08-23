@@ -43,9 +43,10 @@ body {
     height: 100%;
     width: 17%;
     background-image: url("assets/img/pipe1.png");
-    background-size: auto 100%;
+    background-size: 550% 101%;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: red;
 }
   
 .message {

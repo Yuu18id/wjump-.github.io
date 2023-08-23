@@ -106,13 +106,13 @@ function play() {
       } else {
         // Collision detection with bird and pipes
         if (
-          bird_props.left < pipe_sprite_props.left +
+          bird_props.left + 15 < pipe_sprite_props.left +
           pipe_sprite_props.width &&
-          bird_props.left +
+          bird_props.left - 10 +
           bird_props.width > pipe_sprite_props.left &&
-          bird_props.top < pipe_sprite_props.top +
+          bird_props.top + 10 < pipe_sprite_props.top +
           pipe_sprite_props.height &&
-          bird_props.top +
+          bird_props.top - 10 +
           bird_props.height > pipe_sprite_props.top
         ) {
 
@@ -188,7 +188,7 @@ function play() {
   let pipe_seperation = -10;
 
   // Constant value for the gap between two pipes
-  let pipe_gap = 35;
+  let pipe_gap = 35; //35
 
   function create_pipe() {
     if (game_state != 'Play') return;
