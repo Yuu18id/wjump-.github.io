@@ -208,7 +208,7 @@ function play() {
       let pipe_posi = Math.floor(Math.random() * 25) + 8;
       let pipe_sprite_inv = document.createElement('div');
       pipe_sprite_inv.className = 'pipe_sprite';
-      pipe_sprite_inv.style.top = pipe_posi - 70 + 'vh';
+      pipe_sprite_inv.style.top = pipe_posi - 78 + 'vh';
       pipe_sprite_inv.style.left = '100vw';
       pipe_sprite_inv.style.transform = 'scaleY(-1)';
 
