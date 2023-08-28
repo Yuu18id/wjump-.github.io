@@ -3,7 +3,7 @@ let move_speed = 3.5;
 let bird_dy = 0;
 let gravity = 0.5;
 let game_state = 'Start';
-let hiscore = [];
+var hiscore = JSON.parse(localStorage.getItem("hiscore")) || [];
 
 // DOM
 const bird = document.querySelector('.bird');
@@ -120,8 +120,13 @@ function play() {
           // if collision occurs
           game_state = 'End';
           message.innerHTML = 'Press Enter To Restart';
-          hiscore.push(parseInt(score_val.innerHTML));
-          high_score_val.innerHTML = `Hi-Score  ${Math.max.apply(Math, hiscore)}` 
+          //localstorage
+          localStorage.setItem("hiscore", JSON.stringify(hiscore));
+          hiscore.push(parseInt(score_val.innerHTML))
+          localStorage.setItem("hiscore", JSON.stringify(hiscore));
+          var latestScore = JSON.parse(localStorage.getItem("hiscore"))
+
+          high_score_val.innerHTML = `Hi-Score  ${Math.max.apply(Math, latestScore)}`
           button.innerHTML = 'Restart';
           message.style.left = '50%';
           backgroundImage.style.animationPlayState = "paused";
@@ -170,7 +175,7 @@ function play() {
     // Collision detection with bird and
     // window bottom
 
-    if (bird_props.bottom >= background.bottom){
+    if (bird_props.bottom >= background.bottom) {
       game_state = 'End';
       message.innerHTML = 'Please Restart the Page (Bug)';
       high_score_val.innerHTML = 'High Score : '
