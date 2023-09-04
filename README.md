@@ -1,3 +1,6 @@
+Pixelart by @aryllust_
+https://twitter.com/aryllust_
+
 ## Known Issue
 
 1. Pipe gap not fully responsive in few devices.
