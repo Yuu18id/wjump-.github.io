@@ -1,5 +1,4 @@
-Pixelart by @aryllust_
-https://twitter.com/aryllust_
+Pixelart by [@aryllust_](https://twitter.com/aryllust_)
 
 ## Known Issue
 
